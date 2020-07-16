@@ -3,6 +3,9 @@ import datetime
 import speech_recognition as sr
 import wikipedia
 import webbrowser
+import os
+
+
 
 engine = pyttsx3.init('sapi5')
 voices= engine.getProperty('voices') 
@@ -47,6 +50,7 @@ def takeCommand():
         print("Say that again please...")   
         return "None" 
     return query
+
 if __name__ == "__main__":
     user_name()
     wishMe()
@@ -56,20 +60,42 @@ if __name__ == "__main__":
 
 
         if 'wikipedia' in query:  
-            speak('Searching Wikipedia...')
+            speak('Searching Wikipedia please wait...')
             query = query.replace("wikipedia", "")
             results = wikipedia.summary(query, sentences= 1 ) 
             speak("According to Wikipedia")
             print(results)
             speak(results)
+
         elif 'open youtube' in query:
+            speak("opening youtube please wait")
             webbrowser.open("youtube.com")
+        
         elif 'open google' in query:
+            speak("opening google please wait")
             webbrowser.open("google.com")
+
         elif 'the time' in query:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")  
             print(f"Sir, the time is {strTime}")
             speak(f"Sir, the time is {strTime}")
+        
+
+        elif 'play music' in query:
+            music_dir = 'E:\\Favorite song'
+            songs = os.listdir(music_dir)
+            print(songs)
+            os.startfile(os.path.join(music_dir, songs [2]))
+        
+        elif 'open code' in query:
+            speak("opening VS code please wait")
+            code_path = "C:\\Program Files\\Microsoft VS Code\\Code.exe"
+            os.startfile(code_path)
+        
+        elif 'open spotify' in query:
+            codePath = "C:\\Users\\Prasad\\AppData\\Roaming\\Spotify\\Spotify.exe"  
         elif "I am not felling well" :
             print("Dont worry things will get better")
-            speak("Dont worry things will get better they always do")
+            speak("Dont worry things will get better they always do") 
+        
+        
